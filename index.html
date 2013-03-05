@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>CS 184</title>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+  <link rel="stylesheet" href="my.css" />
+  <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <script src="my.js"></script>
+
+  <!-- User-generated css -->
+  <style>
+    
+  </style>
+
+  <!-- User-generated js -->
+  <script>
+
+    $(function() {
+        
+    });
+
+  </script>
+</head>
+<body>
+  <!-- Home -->
+  <div data-role="page" id="page1">
+      <div data-theme="a" data-role="header">
+          <h3>
+              PotHole.in
+          </h3>
+          <div data-role="navbar" data-iconpos="top">
+              <ul>
+                  <li>
+                      <a href="#page5" data-transition="flip" data-theme="b" data-icon="">
+                          Report
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#page6" data-transition="flip" data-theme="b" data-icon="">
+                          Explore
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div data-role="content">
+          <div id="main_greeting">
+              <p style="text-align: left;">
+                  <span style="font-family: 'trebuchet ms', geneva; font-size: small;" data-mce-style="font-family: 'trebuchet ms', geneva; font-size: small;">
+                      <span style="font-size: medium;">
+                          You know what's wrong with your roads.
+                          <br>
+                          Show your city.
+                          <br>
+                          Show your local government.
+                      </span>
+                      <br>
+                  </span>
+              </p>
+          </div>
+          <img id="main_map" src="https://maps.googleapis.com/maps/api/staticmap?center=Stanford, CA&amp;zoom=15&amp;size=288x250&amp;markers=&amp;sensor=false"
+          width="288" height="250" class="map">
+      </div>
+      <div data-theme="a" data-role="footer" data-position="fixed">
+          <h3>
+          </h3>
+      </div>
+  </div>
+  <!-- Report -->
+  <div data-role="page" id="page5">
+      <div data-theme="a" data-role="header">
+          <h3>
+              PotHole.in
+          </h3>
+          <div data-role="navbar" data-iconpos="top">
+              <ul>
+                  <li>
+                      <a href="#page5" data-transition="flip" data-theme="b" data-icon="" class="ui-btn-active ui-state-persist">
+                          Report
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#page6" data-transition="flip" data-theme="b" data-icon="">
+                          Explore
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div data-role="content">
+          <h3>
+              File a Report
+          </h3>
+          <div id="main_greeting">
+              <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                  <strong>
+                      <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
+                          <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
+                          data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                              1. Fix your location
+                          </span>
+                      </span>
+                  </strong>
+              </p>
+          </div>
+          <img id="report_map" src="https://maps.googleapis.com/maps/api/staticmap?center=Stanford, CA&amp;zoom=15&amp;size=288x250&amp;markers=&amp;sensor=false"
+          width="288" height="250" class="map">
+          <div id="main_greeting">
+              <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                  <strong>
+                      <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
+                          <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
+                          data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                              2. Upload a photo
+                          </span>
+                      </span>
+                  </strong>
+              </p>
+          </div>
+          <a id="take_photo" data-role="button" data-transition="flip" data-theme="b"
+          href="#page5" data-icon="plus" data-iconpos="left">
+              Take a Photo
+          </a>
+          <div id="main_greeting">
+              <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                  <strong>
+                      <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
+                          <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
+                          data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                              3. Categorize your report
+                          </span>
+                      </span>
+                  </strong>
+              </p>
+          </div>
+          <div id="report_choices" data-role="fieldcontain">
+              <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
+                  <legend>
+                      What are you reporting?
+                  </legend>
+                  <input id="checkbox1" name="pothole" type="checkbox">
+                  <label for="checkbox1">
+                      Pothole
+                  </label>
+                  <input id="checkbox2" name="garbage" type="checkbox">
+                  <label for="checkbox2">
+                      Garbage
+                  </label>
+                  <input id="checkbox3" name="footpath" type="checkbox">
+                  <label for="checkbox3">
+                      Footpath
+                  </label>
+              </fieldset>
+          </div>
+          <div id="main_greeting">
+              <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                  <strong>
+                      <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
+                          <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
+                          data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                              4. Note your views
+                          </span>
+                      </span>
+                  </strong>
+              </p>
+          </div>
+          <div data-role="fieldcontain" id="comment_box">
+              <fieldset data-role="controlgroup">
+                  <label for="comment_box">
+                      Comment
+                  </label>
+                  <input name="comment_box" id="comment_box" placeholder="Tell us about your photo...."
+                  value="" type="text">
+              </fieldset>
+          </div>
+          <input id="submit_button" type="submit" data-theme="b" data-icon="check"
+          data-iconpos="left" value="Submit">
+      </div>
+      <div data-theme="a" data-role="footer" data-position="fixed">
+          <h3>
+          </h3>
+          <div id="footer_text">
+          </div>
+      </div>
+  </div>
+  <!-- Explore -->
+  <div data-role="page" id="page6">
+      <div data-theme="a" data-role="header">
+          <h3>
+              PotHole.in
+          </h3>
+          <div data-role="navbar" data-iconpos="top">
+              <ul>
+                  <li>
+                      <a href="#page5" data-transition="flip" data-theme="b" data-icon="">
+                          Report
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#page1" data-transition="flip" data-theme="b" data-icon="" class="ui-btn-active ui-state-persist">
+                          Explore
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div data-role="content">
+          <div id="main_greeting">
+              <p style="text-align: left;">
+                  <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                      Explore, share and comment on the reports on the map.
+                  </span>
+              </p>
+          </div>
+          <img id="explore_map" src="https://maps.googleapis.com/maps/api/staticmap?center=Stanford, CA&amp;zoom=15&amp;size=288x250&amp;markers=Wilbur Hall&amp;sensor=false"
+          width="288" height="250" class="map">
+          <div data-role="fieldcontain" id="search_reports">
+              <fieldset data-role="controlgroup">
+                  <label for="search_reports">
+                      Search Reports:
+                  </label>
+                  <input name="search_reports" id="search_reports" placeholder="" value=""
+                  type="search">
+              </fieldset>
+          </div>
+          <div data-role="fieldcontain" id="report_comment_box">
+              <fieldset data-role="controlgroup">
+                  <label for="report_comment_box">
+                      Comment
+                  </label>
+                  <input name="report_comment_box" id="report_comment_box" placeholder="Elaborate on an existing report...."
+                  value="" type="text">
+              </fieldset>
+          </div>
+          <input id="submit_button" type="submit" data-icon="check" data-iconpos="left"
+          value="Submit">
+      </div>
+      <div data-theme="a" data-role="footer">
+          <h3>
+          </h3>
+          <div id="footer_text">
+          </div>
+      </div>
+  </div>
+  <!-- Log In -->
+  <div data-role="page" data-theme="d" id="page7">
+      <div data-theme="a" data-role="header">
+          <h3>
+              PotHole.in
+          </h3>
+          <div data-role="navbar" data-iconpos="top">
+              <ul>
+                  <li>
+                      <a href="#page5" data-transition="flip" data-theme="b" data-icon="">
+                          Report
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#page1" data-transition="flip" data-theme="b" data-icon="">
+                          Explore
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div data-role="content">
+          <div id="login_greeting">
+              <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                  <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                      Register with us to lend verification to your reports and comments on
+                      the website. It only takes a minute!
+                  </span>
+              </p>
+          </div>
+          <h4 id="login_text">
+              Have an account? Log in here:
+          </h4>
+          <div data-role="fieldcontain" id="user_email">
+              <fieldset data-role="controlgroup">
+                  <label for="user_email">
+                      Email:
+                  </label>
+                  <input name="user_email" id="user_email" placeholder="user@email.com"
+                  value="" type="text">
+              </fieldset>
+          </div>
+          <div data-role="fieldcontain" id="password">
+              <fieldset data-role="controlgroup">
+                  <label for="password">
+                      Password:
+                  </label>
+                  <input name="new_user_password_2" id="password" placeholder="" value=""
+                  type="text">
+              </fieldset>
+          </div>
+          <input id="login_button" type="submit" data-theme="b" data-icon="check"
+          data-iconpos="left" value="Log In">
+          <h3 id="signup_text">
+              New User? Sign Up here:
+          </h3>
+          <div data-role="fieldcontain" id="new_user_email">
+              <fieldset data-role="controlgroup">
+                  <label for="new_user_email">
+                      Email:
+                  </label>
+                  <input name="new_user_email" id="new_user_email" placeholder="user@email.com"
+                  value="" type="text">
+              </fieldset>
+          </div>
+          <div data-role="fieldcontain" id="password">
+              <fieldset data-role="controlgroup">
+                  <label for="password">
+                      Password:
+                  </label>
+                  <input name="new_user_password" id="password" placeholder="" value=""
+                  type="text">
+              </fieldset>
+          </div>
+          <div data-role="fieldcontain" id="password">
+              <fieldset data-role="controlgroup">
+                  <label for="password">
+                      Re-enter Password:
+                  </label>
+                  <input name="new_user_password_2" id="password" placeholder="" value=""
+                  type="text">
+              </fieldset>
+          </div>
+          <input id="signup_button" type="submit" data-theme="b" data-icon="plus"
+          data-iconpos="left" value="Sign Up">
+      </div>
+      <div data-theme="a" data-role="footer">
+          <h3>
+          </h3>
+          <div id="footer_text">
+          </div>
+      </div>
+  </div>
+
+  
+</body>
+</html>
