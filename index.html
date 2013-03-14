@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,6 +12,27 @@
   <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <script src="my.js"></script>
+  
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyANXql3mdY9Fbi1mUrz2Inmb1IH7U2zzj4&sensor=false">
+  </script>
+  
+  <script>
+function initialize()
+{
+var mapProp = {
+  center:new google.maps.LatLng(51.508742,-0.120850),
+  zoom:5,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+var map=new google.maps.Map(document.getElementById("map-canvas")
+  ,mapProp);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+  
+
 
   <!-- User-generated css -->
   <style>
@@ -57,15 +79,16 @@
                           <br>
                           Show your city.
                           <br>
-                          Show your local government.
+                          Show your government.
                       </span>
                       <br>
                   </span>
               </p>
           </div>
-          <img id="main_map" src="https://maps.googleapis.com/maps/api/staticmap?center=Stanford, CA&amp;zoom=15&amp;size=288x250&amp;markers=&amp;sensor=false"
-          width="288" height="250" class="map">
       </div>
+      
+      <div id="map-canvas" style="width:288px;height:260px;"></div>
+      
       <div data-theme="a" data-role="footer" data-position="fixed">
           <h3>
           </h3>
