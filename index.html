@@ -130,6 +130,8 @@
           </h3>
       </div>
   </div>
+  
+  
   <!-- Report -->
   
   <div data-role="page" id="page5">
@@ -164,6 +166,7 @@
   google.maps.event.addDomListener(window, 'load', initialize);
   
   </script>
+  
       <div data-theme="a" data-role="header">
           <h3>
               PotHole.in
@@ -216,10 +219,12 @@
                   </strong>
               </p>
           </div>
-          <a id="take_photo" data-role="button" data-transition="flip" data-theme="b"
-          href="#page5" data-icon="plus" data-iconpos="left">
-              Take a Photo
-          </a>
+          
+          <strong>
+          <label style="color:blue">Take a Photo</label>
+          <input type="file" accept="image/*" capture="camera" id="photo">
+          </strong>
+          
           <div id="main_greeting">
               <p style="text-align: justify;" data-mce-style="text-align: justify;">
                   <strong>
