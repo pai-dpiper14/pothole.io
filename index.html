@@ -17,25 +17,32 @@
   </script>
   
   <script>
-function initialize()
-{
-var mapProp = {
-  center:new google.maps.LatLng(51.508742,-0.120850),
-  zoom:5,
-  mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-var map=new google.maps.Map(document.getElementById("map-canvas")
-  ,mapProp);
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
-</head>
+  function initialize()
+  {
+  	var mapProp = {
+	  	center:new google.maps.LatLng(51.508742,-0.120850),
+	  	zoom:5,
+	  	mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
   
+    var map = new google.maps.Map(document.getElementById("map-canvas"),mapProp);
+  
+    var GeoMarker = new GeolocationMarker(map);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+  
+  </script>
 
 
   <!-- User-generated css -->
   <style>
+    #map-canvas {
+        position:relative;
+        left:10px;
+        width:90%;
+	    height:330px;
+    }
     
   </style>
 
@@ -48,13 +55,17 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
   </script>
 </head>
+
 <body>
   <!-- Home -->
   <div data-role="page" id="page1">
       <div data-theme="a" data-role="header">
-          <h3>
+          <a href="http://www.stanford.edu/~pmpai/pothole-test/"> 
+          <h3> 
               PotHole.in
+              
           </h3>
+          </a>
           <div data-role="navbar" data-iconpos="top">
               <ul>
                   <li>
@@ -87,9 +98,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
           </div>
       </div>
       
-      <div id="map-canvas" style="width:288px;height:260px;"></div>
+      <div style="width:100%;">
+      <div id="map-canvas"></div>
+      </div>
       
-      <div data-theme="a" data-role="footer" data-position="fixed">
+      <div data-theme="a" data-role="footer">
           <h3>
           </h3>
       </div>
@@ -204,7 +217,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
           <input id="submit_button" type="submit" data-theme="b" data-icon="check"
           data-iconpos="left" value="Submit">
       </div>
-      <div data-theme="a" data-role="footer" data-position="fixed">
+      <div data-theme="a" data-role="footer">
           <h3>
           </h3>
           <div id="footer_text">
