@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Pothole.io</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <link rel="stylesheet" href="my.css" />
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <script src="my.js"></script>
+	
+</head>
+
+<body>
+  <!-- Log In -->
+  <div data-role="page" data-theme="d" id="log-in">
+      <div data-theme="a" data-role="header">
+          <h3>
+              PotHole.io
+          </h3>
+          <div data-role="navbar" data-iconpos="top">
+              <ul>
+                  <li>
+                      <a href="#page5" data-transition="flip" data-theme="b" data-icon="">
+                          Report
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#page1" data-transition="flip" data-theme="b" data-icon="">
+                          Explore
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div data-role="content">
+          <div id="login_greeting">
+              <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                  <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                      Register with us to lend verification to your reports and comments on
+                      the website. It only takes a minute!
+                  </span>
+              </p>
+          </div>
+          <h4 id="login_text">
+              Have an account? Log in here:
+          </h4>
+          <div data-role="fieldcontain" id="user_email">
+              <fieldset data-role="controlgroup">
+                  <label for="user_email">
+                      Email:
+                  </label>
+                  <input name="user_email" id="user_email" placeholder="user@email.com"
+                  value="" type="text">
+              </fieldset>
+          </div>
+          <div data-role="fieldcontain" id="password">
+              <fieldset data-role="controlgroup">
+                  <label for="password">
+                      Password:
+                  </label>
+                  <input name="new_user_password_2" id="password" placeholder="" value=""
+                  type="text">
+              </fieldset>
+          </div>
+          <input id="login_button" type="submit" data-theme="b" data-icon="check"
+          data-iconpos="left" value="Log In">
+          <h3 id="signup_text">
+              New User? Sign Up here:
+          </h3>
+          <div data-role="fieldcontain" id="new_user_email">
+              <fieldset data-role="controlgroup">
+                  <label for="new_user_email">
+                      Email:
+                  </label>
+                  <input name="new_user_email" id="new_user_email" placeholder="user@email.com"
+                  value="" type="text">
+              </fieldset>
+          </div>
+          <div data-role="fieldcontain" id="password">
+              <fieldset data-role="controlgroup">
+                  <label for="password">
+                      Password:
+                  </label>
+                  <input name="new_user_password" id="password" placeholder="" value=""
+                  type="text">
+              </fieldset>
+          </div>
+          <div data-role="fieldcontain" id="password">
+              <fieldset data-role="controlgroup">
+                  <label for="password">
+                      Re-enter Password:
+                  </label>
+                  <input name="new_user_password_2" id="password" placeholder="" value=""
+                  type="text">
+              </fieldset>
+          </div>
+          <input id="signup_button" type="submit" data-theme="b" data-icon="plus"
+          data-iconpos="left" value="Sign Up">
+      </div>
+      <div data-theme="a" data-role="footer">
+          <h3>
+          </h3>
+          <div id="footer_text">
+          </div>
+      </div>
+  </div>
+  
+</body>
+</html>

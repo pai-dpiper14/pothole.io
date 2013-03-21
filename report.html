@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>Pothole.io</title>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+  <link rel="stylesheet" href="my.css" />
+  <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <script src="my.js"></script>
+  
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyANXql3mdY9Fbi1mUrz2Inmb1IH7U2zzj4&sensor=true">
+  </script>
+  <script src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/geolocationmarker/src/geolocationmarker-compiled.js"></script>
+
+  
+  <script>
+  function initialize()
+  {
+  	var mapProp = {
+	  	center:new google.maps.LatLng(51.508742,-0.120850),
+	  	zoom:5,
+	  	mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+  
+    var map = new google.maps.Map(document.getElementById("map-canvas"),mapProp);
+  
+    var GeoMarker = new GeolocationMarker(map);
+    GeoMarker.setCircleOptions({fillColor: '#808080'});
+
+        google.maps.event.addListenerOnce(GeoMarker, 'position_changed', function() {
+          map.setCenter(this.getPosition());
+          map.fitBounds(this.getBounds());
+        });
+
+        google.maps.event.addListener(GeoMarker, 'geolocation_error', function(e) {
+          alert('There was an error obtaining your position. Message: ' + e.message);
+        });
+
+        GeoMarker.setMap(map);
+
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+  
+  </script>
+  
+  
+
+
+  <!-- User-generated css -->
+  <style>
+    #map-canvas {
+        position:relative;
+        left:10px;
+        width:90%;
+	    height:330px;
+    }
+    
+    #map-canvas2 {
+        position:relative;
+        left:10px;
+        width:90%;
+	    height:330px;
+    }
+    
+  </style>
+
+  <!-- User-generated js -->
+  <script>
+
+    $(function() {
+        
+    });
+
+  </script>
+</head>
+
+<body>
+	
+<!-- Report -->
+
+<div data-role="page" id="page5">
+ <div data-theme="a" data-role="header">
+        <h3>
+            PotHole.io
+        </h3>
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li>
+                    <a href="report.html" data-transition="flip" data-theme="b" data-icon="" class="ui-btn-active ui-state-persist">
+                        Report
+                    </a>
+                </li>
+                <li>
+                    <a href="explore.html" data-transition="flip" data-theme="b" data-icon="">
+                        Explore
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div data-role="content">
+        <h3>
+            File a Report
+        </h3>
+        <div id="main_greeting">
+            <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                <strong>
+                    <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
+                        <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
+                        data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                            1. Fix your location
+                        </span>
+                    </span>
+                </strong>
+            </p>
+        </div>
+        
+        <div style="width:100%;">
+        <div id="map-canvas"></div>
+        </div>
+        
+        <div id="main_greeting">
+            <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                <strong>
+                    <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
+                        <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
+                        data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                            2. Upload a photo
+                        </span>
+                    </span>
+                </strong>
+            </p>
+        </div>
+        
+        <strong>
+        <label style="color:blue">Take a Photo</label>
+        <input type="file" accept="image/*" capture="camera" id="photo">
+        </strong>
+        
+        <div id="main_greeting">
+            <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                <strong>
+                    <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
+                        <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
+                        data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                            3. Categorize your report
+                        </span>
+                    </span>
+                </strong>
+            </p>
+        </div>
+        <div id="report_choices" data-role="fieldcontain">
+            <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
+                <legend>
+                    What are you reporting?
+                </legend>
+                <input id="checkbox1" name="pothole" type="checkbox">
+                <label for="checkbox1">
+                    Pothole
+                </label>
+                <input id="checkbox2" name="garbage" type="checkbox">
+                <label for="checkbox2">
+                    Garbage
+                </label>
+                <input id="checkbox3" name="footpath" type="checkbox">
+                <label for="checkbox3">
+                    Footpath
+                </label>
+            </fieldset>
+        </div>
+        <div id="main_greeting">
+            <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                <strong>
+                    <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
+                        <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
+                        data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                            4. Note your views
+                        </span>
+                    </span>
+                </strong>
+            </p>
+        </div>
+        <div data-role="fieldcontain" id="comment_box">
+            <fieldset data-role="controlgroup">
+                <label for="comment_box">
+                    Comment
+                </label>
+                <input name="comment_box" id="comment_box" placeholder="Tell us about your photo...."
+                value="" type="text">
+            </fieldset>
+        </div>
+        
+        <input id="submit_button" type="submit" data-theme="b" data-icon="check"
+        data-iconpos="left" value="Submit">
+     
+    </div>
+    
+    <div data-theme="a" data-role="footer">
+        <h3>
+        </h3>
+        <div id="footer_text">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

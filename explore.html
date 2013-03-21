@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Pothole.io</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <link rel="stylesheet" href="my.css" />
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <script src="my.js"></script>
+	
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyANXql3mdY9Fbi1mUrz2Inmb1IH7U2zzj4&sensor=true">
+    </script>
+    <script src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/geolocationmarker/src/geolocationmarker-compiled.js"></script>
+
+  
+    <script>
+    function initialize()
+    {
+    	var mapProp = {
+  	  	center:new google.maps.LatLng(51.508742,-0.120850),
+  	  	zoom:5,
+  	  	mapTypeId:google.maps.MapTypeId.ROADMAP
+          };
+  
+      var map = new google.maps.Map(document.getElementById("map-canvas"),mapProp);
+  
+      var GeoMarker = new GeolocationMarker(map);
+      GeoMarker.setCircleOptions({fillColor: '#808080'});
+
+          google.maps.event.addListenerOnce(GeoMarker, 'position_changed', function() {
+            map.setCenter(this.getPosition());
+            map.fitBounds(this.getBounds());
+          });
+
+          google.maps.event.addListener(GeoMarker, 'geolocation_error', function(e) {
+            alert('There was an error obtaining your position. Message: ' + e.message);
+          });
+
+          GeoMarker.setMap(map);
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+  
+    </script>
+	
+    <style>
+      #map-canvas {
+          position:relative;
+          left:10px;
+          width:90%;
+  	    height:330px;
+      }  
+    </style>
+	
+</head>
+
+<body>
+  
+  
+  <!-- Explore -->
+  <div data-role="page" id="page6">
+      <div data-theme="a" data-role="header">
+          <h3>
+              PotHole.io
+          </h3>
+          <div data-role="navbar" data-iconpos="top">
+              <ul>
+                  <li>
+                      <a href="report.html" data-transition="flip" data-theme="b" data-icon="">
+                          Report
+                      </a>
+                  </li>
+                  <li>
+                      <a href="explore.html" data-transition="flip" data-theme="b" data-icon="" class="ui-btn-active ui-state-persist">
+                          Explore
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div data-role="content">
+          <div id="main_greeting">
+              <p style="text-align: left;">
+                  <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                      Explore, share and comment on the reports on the map.
+                  </span>
+              </p>
+          </div>
+		  
+          <div style="width:100%;">
+          <div id="map-canvas"></div>
+          </div>
+          
+          <div data-role="fieldcontain" id="search_reports">
+              <fieldset data-role="controlgroup">
+                  <label for="search_reports">
+                      Search Reports:
+                  </label>
+                  <input name="search_reports" id="search_reports" placeholder="" value=""
+                  type="search">
+              </fieldset>
+          </div>
+          <div data-role="fieldcontain" id="report_comment_box">
+              <fieldset data-role="controlgroup">
+                  <label for="report_comment_box">
+                      Comment
+                  </label>
+                  <input name="report_comment_box" id="report_comment_box" placeholder="Elaborate on an existing report...."
+                  value="" type="text">
+              </fieldset>
+          </div>
+          <input id="submit_button" type="submit" data-icon="check" data-iconpos="left"
+          value="Submit">
+      </div>
+      <div data-theme="a" data-role="footer">
+          <h3>
+          </h3>
+          <div id="footer_text">
+          </div>
+      </div>
+  </div>
+  
+  
+  
+
+  
+</body>
+</html>
