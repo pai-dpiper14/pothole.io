@@ -16,14 +16,14 @@
   </script>
   <script src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/geolocationmarker/src/geolocationmarker-compiled.js"></script>
 
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-  <link rel="stylesheet" href="my.css" />
   
   <script>
-  google.maps.event.addDomListener(window, 'DOMContentLoaded', window.location.reload);
+  
   </script>
-  
+    
   <script>
+  google.maps.event.addDomListener(window, 'DOMContentLoaded', initialize);
+  
   function initialize()
   {
   	var mapProp = {
@@ -46,17 +46,11 @@
           alert('There was an error obtaining your position. Message: ' + e.message);
         });
 
-        GeoMarker.setMap(map);	
-		
-  }
-
-  google.maps.event.addDomListener(window, 'DOMContentLoaded', initialize);
+        GeoMarker.setMap(map);		
+  }  
   
   </script>
   
-  
-
-
   <!-- User-generated css -->
   <style>
     #map-canvas {
@@ -69,12 +63,13 @@
 
   <!-- User-generated js -->
   <script>
-
-    $(function() {
-        
-    });
-
+  
   </script>
+  
+
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+  <link rel="stylesheet" href="my.css" />
+  
 </head>
 
 <body>
@@ -180,7 +175,7 @@
                     <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
                         <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
                         data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
-                            4. Note your views
+                            4. Comment
                         </span>
                     </span>
                 </strong>
@@ -188,9 +183,6 @@
         </div>
         <div data-role="fieldcontain" id="comment_box">
             <fieldset data-role="controlgroup">
-                <label for="comment_box">
-                    Comment
-                </label>
                 <input name="comment_box" id="comment_box" placeholder="Tell us about your photo...."
                 value="" type="text">
             </fieldset>

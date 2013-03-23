@@ -15,14 +15,14 @@
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyANXql3mdY9Fbi1mUrz2Inmb1IH7U2zzj4&sensor=true">
     </script>
     <script src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/geolocationmarker/src/geolocationmarker-compiled.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-    <link rel="stylesheet" href="my.css" />
-	
+   
     <script>
-    google.maps.event.addDomListener(window, 'DOMContentLoaded', window.location.reload);
+   
     </script>
   
     <script>
+	google.maps.event.addDomListener(window, 'DOMContentLoaded', initialize);
+	
     function initialize()
     {
     	var mapProp = {
@@ -47,10 +47,7 @@
 
           GeoMarker.setMap(map);
 
-    }
-
-    google.maps.event.addDomListener(window, 'DOMContentLoaded', initialize);
-  
+    } 
     </script>
 	
     <style>
@@ -61,6 +58,10 @@
   	    height:330px;
       }  
     </style>
+	
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <link rel="stylesheet" href="my.css" />
 	
 </head>
 
