@@ -20,6 +20,10 @@
   <link rel="stylesheet" href="my.css" />
   
   <script>
+  google.maps.event.addDomListener(window, 'DOMContentLoaded', window.location.reload);
+  </script>
+  
+  <script>
   function initialize()
   {
   	var mapProp = {
@@ -42,8 +46,8 @@
           alert('There was an error obtaining your position. Message: ' + e.message);
         });
 
-        GeoMarker.setMap(map);
-
+        GeoMarker.setMap(map);	
+		
   }
 
   google.maps.event.addDomListener(window, 'DOMContentLoaded', initialize);
