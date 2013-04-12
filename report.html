@@ -135,7 +135,19 @@
         
         <strong>
         <label style="color:blue">Take a Photo</label>
-        <input type="file" accept="image/*" capture="camera" id="photo">
+	    <form enctype="multipart/form-data" action="upload.php" id="uploadForm" data-ajax="false" method="POST">
+	    	<input type="hidden" name="MAX_FILE_SIZE" value="3000000000" />
+	    	Select Picture/File To Upload: <input type="file" accept="image/*" capture="camera" name="userfile" onchange="getFileName(this.files)" id="file" />
+	    	<input type="submit" value="Upload" data-role="button" />
+	    </form> 
+ 
+	    <script>
+	    	function getFileName(fileName) {
+	    	//	alert(fileName[0].name);
+	    	//	alert(fileName[0].size);
+ 	
+	    	}
+	    </script>
         </strong>
         
         <div id="main_greeting">
@@ -190,6 +202,7 @@
         
         <input id="submit_button" type="submit" data-theme="b" data-icon="check"
         data-iconpos="left" value="Submit">
+		
      
     </div>
     
