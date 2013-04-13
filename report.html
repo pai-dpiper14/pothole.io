@@ -98,7 +98,7 @@
         <div id="main_greeting">
             <p style="text-align: justify;" data-mce-style="text-align: justify;">
                 <strong>
-                    <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
+                    <span> <!-- style="text-decoration: underline;" data-mce-style="text-decoration: underline;" -->
                         <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
                         data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
                             Find yourself on the map. Explore your surroundings.
@@ -164,20 +164,26 @@
                 <legend>
                     What are you reporting?
                 </legend>
-                <input id="checkbox1" name="pothole" type="checkbox">
+                <input name="typeButton" id="checkbox1" value="Pothole" type="radio">
                 <label for="checkbox1">
                     Pothole
                 </label>
-                <input id="checkbox2" name="garbage" type="checkbox">
+                <input name="typeButton" id="checkbox2" value="Garbage" type="radio">
                 <label for="checkbox2">
                     Garbage
                 </label>
-                <input id="checkbox3" name="footpath" type="checkbox">
+                <input name="typeButton" id="checkbox3" value="Footpath" type="radio">
                 <label for="checkbox3">
                     Footpath
                 </label>
             </fieldset>
         </div>
+		
+		
+		<script type="text/javascript">
+		  var Type = $('input:radio[name=typeButton]:checked').val();
+		</script>
+		
         <div id="main_greeting">
             <p style="text-align: justify;" data-mce-style="text-align: justify;">
                 <strong>
@@ -190,6 +196,7 @@
                 </strong>
             </p>
         </div>
+		
         <div data-role="fieldcontain" id="comment_box">
             <fieldset data-role="controlgroup">
                 <input name="comment_box" id="comment_box" placeholder="Tell us about your photo...."
