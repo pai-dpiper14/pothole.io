@@ -1,9 +1,10 @@
 <?PHP
-$db = new Mysqli("localhost", "root", "pothole", "pothole"); 
+ini_set('display_errors', 1);
+$db = new Mysqli("localhost", "root", "potholearsenal", "pothole"); 
 if ($db->connect_errno){
 	die('Connect Error: ' . $db->connect_errno);
 }
-$place = 'pothole';
+$place = $_POST['typeButton'];
 $description = $_POST['comment_box'];
 $latitude = $_POST['latitude'];
 $longitude = $_POST['longitude'];

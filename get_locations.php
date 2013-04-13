@@ -2,7 +2,7 @@
      
 $server     = 'localhost';
 $username   = 'root';
-$password   = 'pothole';
+$password   = 'potholearsenal';
 $database   = 'pothole';
  
 $dsn        = "mysql:host=$server;dbname=$database";
