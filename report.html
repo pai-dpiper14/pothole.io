@@ -22,7 +22,7 @@
   </script>
     
   <script>
-  google.maps.event.addDomListener(window, 'DOMContentLoaded', initialize);
+  google.maps.event.addDomListener(window, 'load', initialize);
   
   function initialize()
   {
@@ -55,7 +55,6 @@
   <style>
     #map-canvas {
         position:relative;
-        left:10px;
         width:90%;
 	    height:330px;
     }    
@@ -91,17 +90,32 @@
                         Report
                     </a>
                 </li>
-                <li>
-                    <a href="explore.html" data-transition="flip" data-theme="b" data-icon="">
-                        Explore
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
     <div data-role="content">
+        
+        <div id="main_greeting">
+            <p style="text-align: justify;" data-mce-style="text-align: justify;">
+                <strong>
+                    <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
+                        <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
+                        data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
+                            Find yourself on the map. Explore your surroundings.
+                        </span>
+                    </span>
+                </strong>
+            </p>
+        </div>
+        
+		<center>
+       	 	<div style="width:100%; height:330px;">
+        		<div id="map-canvas"></div>
+        	</div>
+	    </center>
+		
         <h3>
-            File a Report
+            File your report.
         </h3>
         <div id="main_greeting">
             <p style="text-align: justify;" data-mce-style="text-align: justify;">
@@ -109,24 +123,7 @@
                     <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
                         <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
                         data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
-                            1. Fix your location
-                        </span>
-                    </span>
-                </strong>
-            </p>
-        </div>
-        
-        <div style="width:100%;height:$(window).height()-30;">
-        <div id="map-canvas"></div>
-        </div>
-        
-        <div id="main_greeting">
-            <p style="text-align: justify;" data-mce-style="text-align: justify;">
-                <strong>
-                    <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
-                        <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
-                        data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
-                            2. Upload a photo
+                            1. Upload a photo
                         </span>
                     </span>
                 </strong>
@@ -156,7 +153,7 @@
                     <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
                         <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
                         data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
-                            3. Categorize your report
+                            2. Categorize your report
                         </span>
                     </span>
                 </strong>
@@ -187,7 +184,7 @@
                     <span style="text-decoration: underline;" data-mce-style="text-decoration: underline;">
                         <span face="trebuchet ms, geneva" size="2" style="font-family: 'trebuchet ms', geneva; font-size: medium;"
                         data-mce-style="font-family: 'trebuchet ms', geneva; font-size: medium;">
-                            4. Comment
+                            3. Comment
                         </span>
                     </span>
                 </strong>
