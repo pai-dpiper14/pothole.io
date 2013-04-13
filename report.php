@@ -23,27 +23,32 @@
     
   <script>
   google.maps.event.addDomListener(window, 'load', initialize);
-  
+  var map = null; 
+  var GeoMarker = null;
+  var geocoder = null;
+  var infowindow = null;
   function initialize()
   {
-  	var mapProp = {
-	  	center:new google.maps.LatLng(12.97196, 77.59410),
-	  	zoom:9,
-	  	mapTypeId:google.maps.MapTypeId.ROADMAP
+    geocoder = new google.maps.Geocoder();
+    infowindow = new google.maps.InfoWindow();
+    var mapProp = {
+      center:new google.maps.LatLng(12.97196, 77.59410),
+      zoom:9,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
         };
   
-    var map = new google.maps.Map(document.getElementById("map-canvas"),mapProp);
+    map = new google.maps.Map(document.getElementById("map-canvas"),mapProp);
   
-    var GeoMarker = new GeolocationMarker(map);
+    GeoMarker = new GeolocationMarker(map);
     GeoMarker.setCircleOptions({fillColor: '#808080'});
 
         google.maps.event.addListenerOnce(GeoMarker, 'position_changed', function() {
           map.setCenter(this.getPosition());
           map.fitBounds(this.getBounds());
-		  
-  		  var loc = this.getPosition();
-  		  var latitude = loc.lat();
-  		  var longtitude = loc.lng();
+      
+        var loc = this.getPosition();
+        var latitude = loc.lat();
+        var longtitude = loc.lng();
 
         });
 
@@ -51,18 +56,119 @@
           alert('There was an error obtaining your position. Message: ' + e.message);
         });
 
-        GeoMarker.setMap(map);				
+        GeoMarker.setMap(map);  
+
+    makeRequest('get_locations.php', function(data) {
+        var data = JSON.parse(data.responseText);
+        for (var i = 0; i < data.length; i++) {
+            displayLocation(data[i]);
+        }
+    });
+      
   }  
   
   
+  function makeRequest(url, callback) {
+      var request;
+      if (window.XMLHttpRequest) {
+          request = new XMLHttpRequest(); // IE7+, Firefox, Chrome, Opera, Safari
+      } else {
+          request = new ActiveXObject("Microsoft.XMLHTTP"); // IE6, IE5
+      }
+      request.onreadystatechange = function() {
+          if (request.readyState == 4 && request.status == 200) {
+              callback(request);
+          }
+      }
+      request.open("GET", url, true);
+      request.send();
+  }
+
+  function displayLocation(location) {
+   
+      var content =   '<div class="infoWindow"><strong>'  + location.place + '</strong>'
+                      + '<br/>'     + location.description + '</div>';
+
+      if (parseInt(location.lat) == 0) {
+          geocoder.geocode( { 'address': location.address }, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                   
+                  var marker = new google.maps.Marker({
+                      map: map, 
+                      position: results[0].geometry.location,
+                      title: location.name
+                  });
+                   
+                  google.maps.event.addListener(marker, 'click', function() {
+                      infowindow.setContent(content);
+                      infowindow.open(map,marker);
+                  });
+                   
+                  /* Save geocoding result to the Database
+                  var url =   'set_coords.php?id=' + location.id 
+                              + '&lat=' + results[0].geometry.location.lat() 
+                              + '&lon=' + results[0].geometry.location.lng();
+                   
+                  makeRequest(url, function(data) {
+                      if (data.responseText == 'OK') {
+                          // Success
+                      }
+                  });*/
+              }
+          });
+      } else {
+           
+          var position = new google.maps.LatLng(parseFloat(location.lat), parseFloat(location.lng));
+          var marker = new google.maps.Marker({
+              map: map, 
+              position: position,
+              title: location.name
+          });
+           
+          google.maps.event.addListener(marker, 'click', function() {
+              infowindow.setContent(content);
+              infowindow.open(map,marker);
+          });
+      }
+  }
+
+
+  $(document).ready(function () {
+      $('#submit_button').click(function(){
+        var place = $('input:radio[name=typeButton]:checked').val();
+        //var place   = $.trim($('#n_place').val());
+        var description = $.trim($('#comment_box').val());
+        var lat = GeoMarker.getPosition().lat();
+        var lng = GeoMarker.getPosition().lng();
+
+        $.post('save_place.php', {'place' : place, 'description' : description, 'lat' : lat, 'lng' : lng}, 
+          function(data){
+            console.log(data);
+            location.reload();
+            //var place_id = data;
+            //var new_option = $('<option>').attr({'data-id' : place_id, 'data-place' : place, 'data-lat' : lat, 'data-lng' : lng, 'data-description' : description}).text(place);
+            //new_option.appendTo($('#saved_places'));
+          }
+        );
+        return false;
+
+      });
+  });
   </script>
-  
+
+  <script type="text/javascript">
+    navigator.geolocation.getCurrentPosition (function (pos)
+    {
+      var latitude = pos.coords.latitude;
+      var longitude = pos.coords.longitude;
+    });
+  </script>
   <!-- User-generated css -->
   <style>
     #map-canvas {
         position:relative;
         width:90%;
-	    height:330px;
+      height:330px;
     }    
   </style>
 
@@ -78,16 +184,16 @@
 </head>
 
 <body>
-	
+  
 <!-- Report -->
 
 <div data-role="page" id="report">
  <div data-theme="a" data-role="header">
      <h3>
-  	   	<a href="index.html" data-transition="flip"> 
+        <a href="index.html" data-transition="flip"> 
          PotHole.io
-		</a>  
-  	 </h3>
+    </a>  
+     </h3>
         
         <div data-role="navbar" data-iconpos="top">
             <ul>
@@ -114,12 +220,12 @@
             </p>
         </div>
         
-		<center>
-       	 	<div style="width:100%; height:330px;">
-        		<div id="map-canvas"></div>
-        	</div>
-	    </center>
-		
+    <center>
+          <div style="width:100%; height:330px;">
+            <div id="map-canvas"></div>
+          </div>
+      </center>
+    
         <h3>
             File your report.
         </h3>
@@ -138,19 +244,20 @@
         
         <strong>
         <label style="color:blue">Take a Photo</label>
-	    <form enctype="multipart/form-data" action="upload.php" id="uploadForm" data-ajax="false" method="POST">
-	    	<input type="hidden" name="MAX_FILE_SIZE" value="3000000000" />
-	    	Select Picture/File To Upload: <input type="file" accept="image/*" capture="camera" name="userfile" onchange="getFileName(this.files)" id="file" />
-	    	
-	    
+
+      <!--<form enctype="multipart/form-data" action="" id="uploadForm" data-ajax="false" method="POST">-->
+        <input type="hidden" name="MAX_FILE_SIZE" value="3000000000" />
+        Select Picture/File To Upload: <input type="file" accept="image/*" capture="camera" name="userfile" onchange="getFileName(this.files)" id="file" />
+        
+      
  
-	    <script>
-	    	function getFileName(fileName) {
-	    	//	alert(fileName[0].name);
-	    	//	alert(fileName[0].size);
- 	
-	    	}
-	    </script>
+      <script>
+        function getFileName(fileName) {
+        //  alert(fileName[0].name);
+        //  alert(fileName[0].size);
+  
+        }
+      </script>
         </strong>
         
         <div id="main_greeting">
@@ -184,13 +291,7 @@
                 </label>
             </fieldset>
         </div>
-		
-		
-		<script type="text/javascript">
-		  var Type = $('input:radio[name=typeButton]:checked').val();
-		  
-		</script>
-		
+    
         <div id="main_greeting">
             <p style="text-align: justify;" data-mce-style="text-align: justify;">
                 <strong>
@@ -203,8 +304,8 @@
                 </strong>
             </p>
         </div>
-		
-        <div data-role="fieldcontain" id="comment_box">
+    
+        <div data-role="fieldcontain">
             <fieldset data-role="controlgroup">
                 <input name="comment_box" id="comment_box" placeholder="Tell us about your photo...."
                 value="" type="text">
@@ -213,7 +314,7 @@
         
         <input id="submit_button" type="submit" data-theme="b" data-icon="check"
         data-iconpos="left" value="Submit">
-	</form> 
+  </form> 
      
     </div>
     
